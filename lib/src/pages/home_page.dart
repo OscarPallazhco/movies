@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_swiper/flutter_swiper.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
 
@@ -11,13 +13,36 @@ class HomePage extends StatelessWidget {
         centerTitle: false,
         backgroundColor: Colors.indigo,
         actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {}
-          )
+          IconButton(icon: Icon(Icons.search), onPressed: () {})
         ],
       ),
-      body: SafeArea(child: Text('HomePage')),
+      body: Column(
+        children: <Widget>[
+          _swiperTarjetas(),
+        ],
+      ),
+    );
+  }
+
+  Widget _swiperTarjetas() {
+    return Container(
+      child: Swiper(
+        itemBuilder: (BuildContext context, int index) {
+          return new Image.network(
+            "http://via.placeholder.com/350x150",
+            fit: BoxFit.fill,
+          );
+        },
+        itemCount: 5,
+        pagination: new SwiperPagination(),
+        control: new SwiperControl(),
+        layout: SwiperLayout.STACK,
+        itemWidth: 250.0,
+
+      ),
+      width: double.infinity,
+      height: 150.0,
+      margin: EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
     );
   }
 }
