@@ -21,8 +21,6 @@ class PeliculasProvider {
 
     final peliculas = new Peliculas.fromJsonList(decodedData["results"]);
 
-    print(peliculas.items[1].originalTitle);
-
     return peliculas.items;
   }
 }
