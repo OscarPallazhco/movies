@@ -49,6 +49,14 @@ class Pelicula {
     video            = json['video'];
     voteAverage      = json['vote_average'] / 1;
   }
+
+  String getImgUrl(){
+    if (posterPath == null) {
+      return 'https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101032/112815935-stock-vector-no-image-available-icon-flat-vector-illustration.jpg?ver=6';
+    }
+    return 'https://image.tmdb.org/t/p/w500/$posterPath';
+  }
+
 }
 
 class Peliculas {
