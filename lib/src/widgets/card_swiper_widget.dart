@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 class CardSwiperW extends StatelessWidget {
-  List<dynamic> elementos;
+  final List<dynamic> elementos;
 
   CardSwiperW({@required this.elementos});
 
