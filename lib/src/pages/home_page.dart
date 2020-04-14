@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies/src/models/pelicula_model.dart';
 import 'package:movies/src/providers/peliculas_provider.dart';
 
 import 'package:movies/src/widgets/card_swiper_widget.dart';
@@ -20,6 +21,7 @@ class HomePage extends StatelessWidget {
       body: Column(
         children: <Widget>[
           _swiperTarjetas(),
+          _footer(context),
         ],
       ),
     );
@@ -44,6 +46,28 @@ class HomePage extends StatelessWidget {
           );
         }
       },
+    );
+  }
+
+  Widget _footer(BuildContext context) {
+    return Container(
+      child: Column(
+        children: <Widget>[
+          Text(
+            'Populares',
+            style: Theme.of(context).textTheme.subhead,
+          ),
+          FutureBuilder(
+            future: _peliculasProvider.getPopulares(),
+            builder:(BuildContext context, AsyncSnapshot<List<Pelicula>> snapshot) {
+              snapshot.data?.forEach((pelicula){
+                print(pelicula.title);
+              });
+              return Container();
+            },
+          ),
+        ],
+      ),
     );
   }
 }
