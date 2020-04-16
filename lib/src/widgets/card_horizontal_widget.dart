@@ -3,21 +3,30 @@ import 'package:movies/src/models/pelicula_model.dart';
 
 class CardHorizontalW extends StatelessWidget {
   final List<Pelicula> items;
+  final Function functionAddItems;
 
-  CardHorizontalW({@required this.items});
+  CardHorizontalW({@required this.items, @required this.functionAddItems});
+
+  final PageController _pageController = PageController(
+    initialPage: 1,
+    viewportFraction: 0.3,
+  );
 
   @override
   Widget build(BuildContext context) {
     final _screenSize = MediaQuery.of(context).size;
 
+    _pageController.addListener((){
+      if (_pageController.position.pixels >= _pageController.position.maxScrollExtent - 200.0) {
+        functionAddItems();
+      }
+    });
+
     return Container(
       height: _screenSize.height * 0.3,
       child: PageView(
         children: _tarjetasHor(context),
-        controller: PageController(
-          initialPage: 1,
-          viewportFraction: 0.3,
-        ),
+        controller: _pageController,
         pageSnapping: false,
       ),
     );
@@ -38,7 +47,9 @@ class CardHorizontalW extends StatelessWidget {
               ),
               borderRadius: BorderRadius.circular(20.0),
             ),
-            SizedBox(height: 5.0,),
+            SizedBox(
+              height: 5.0,
+            ),
             Text(
               pelicula.title,
               overflow: TextOverflow.ellipsis,
