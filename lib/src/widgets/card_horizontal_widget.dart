@@ -36,7 +36,7 @@ class CardHorizontalW extends StatelessWidget {
   }
 
   Widget _tarjetaHor (BuildContext context, Pelicula pelicula){
-    return Container(
+    final tarjeta =  Container(
         margin: EdgeInsets.only(right: 15.0),
         child: Column(
           children: <Widget>[
@@ -60,5 +60,13 @@ class CardHorizontalW extends StatelessWidget {
           ],
         ),
       );
+    
+    return GestureDetector(
+      child: tarjeta,
+      onTap: (){
+        Navigator.pushNamed(context, 'peliculadetalle', arguments: pelicula);
+      },
+    );
+
   }
 }
