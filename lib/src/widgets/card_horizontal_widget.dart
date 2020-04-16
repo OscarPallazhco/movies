@@ -24,17 +24,19 @@ class CardHorizontalW extends StatelessWidget {
 
     return Container(
       height: _screenSize.height * 0.3,
-      child: PageView(
-        children: _tarjetasHor(context),
+      child: PageView.builder(
         controller: _pageController,
         pageSnapping: false,
+        itemCount: items.length,
+        itemBuilder: (BuildContext context, int index) {
+          return _tarjetaHor(context, items[index]);
+        },
       ),
     );
   }
 
-  List<Widget> _tarjetasHor(BuildContext context) {
-    return items.map((Pelicula pelicula) {
-      return Container(
+  Widget _tarjetaHor (BuildContext context, Pelicula pelicula){
+    return Container(
         margin: EdgeInsets.only(right: 15.0),
         child: Column(
           children: <Widget>[
@@ -58,6 +60,5 @@ class CardHorizontalW extends StatelessWidget {
           ],
         ),
       );
-    }).toList();
   }
 }
