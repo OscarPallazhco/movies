@@ -15,14 +15,18 @@ class PeliculasProvider {
 
   List<Pelicula> _populares = new List();
 
-  final StreamController _popularesStreamController = new StreamController<List<Pelicula>>.broadcast();
+  final StreamController _popularesStreamController =
+      new StreamController<List<Pelicula>>.broadcast();
 
-  Function(List<Pelicula>) get popularesSink => _popularesStreamController.sink.add;
+  bool _isChargingPopulares = false;
 
-  Stream<List<Pelicula>> get popularesStream => _popularesStreamController.stream;
+  Function(List<Pelicula>) get popularesSink =>
+      _popularesStreamController.sink.add;
 
+  Stream<List<Pelicula>> get popularesStream =>
+      _popularesStreamController.stream;
 
-  void disposeStreams(){
+  void disposeStreams() {
     _popularesStreamController?.close();
   }
 
@@ -48,6 +52,11 @@ class PeliculasProvider {
   }
 
   Future<List<Pelicula>> getPopulares() async {
+    if (_isChargingPopulares) {
+      return [];
+    }
+
+    _isChargingPopulares = true;
     _popularesPage++;
     final url = Uri.https(_dominio, '3/movie/popular', {
       'api_key': _apiKey,
@@ -59,8 +68,8 @@ class PeliculasProvider {
 
     _populares.addAll(resp);
     popularesSink(_populares);
+    _isChargingPopulares = false;
 
     return resp;
-    
   }
 }
