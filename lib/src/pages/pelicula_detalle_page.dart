@@ -7,9 +7,24 @@ class PeliculaDetallePage extends StatelessWidget {
     final Pelicula pelicula = ModalRoute.of(context).settings.arguments;
 
     return Scaffold(
-      body: CustomScrollView(
+        body: CustomScrollView(
       slivers: <Widget>[
         _crearAppBar(pelicula),
+        SliverList(
+            delegate: SliverChildListDelegate([
+          SizedBox(
+            height: 10.0,
+          ),
+          _posterTitulo(context, pelicula),
+          _descripcion(pelicula),
+          _descripcion(pelicula),
+          _descripcion(pelicula),
+          _descripcion(pelicula),
+          _descripcion(pelicula),
+          _descripcion(pelicula),
+          _descripcion(pelicula),
+          
+        ])),
       ],
     ));
   }
@@ -33,6 +48,65 @@ class PeliculaDetallePage extends StatelessWidget {
           fit: BoxFit.cover,
           // fadeInDuration: Duration(microseconds: 3600),
         ),
+      ),
+    );
+  }
+
+  Widget _posterTitulo(BuildContext context, Pelicula pelicula) {
+    return Container(
+      padding: EdgeInsets.only(left: 15.0, right: 15.0),
+      child: Row(
+        children: <Widget>[
+          ClipRRect(
+            child: Image(
+              image: NetworkImage(pelicula.getImgUrl()),
+              height: 150.0,
+            ),
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          SizedBox(
+            width: 20.0,
+          ),
+          Flexible(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  pelicula.title,
+                  style: Theme.of(context).textTheme.title,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Text(
+                  pelicula.originalTitle,
+                  style: Theme.of(context).textTheme.subhead,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.star_half,
+                      color: Colors.orangeAccent,
+                    ),
+                    Text(
+                      pelicula.voteAverage.toString(),
+                      style: Theme.of(context).textTheme.subhead,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _descripcion(Pelicula pelicula) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
+      child: Text(
+        pelicula.overview,
+        textAlign: TextAlign.justify,
       ),
     );
   }
