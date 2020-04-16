@@ -34,43 +34,50 @@ class Pelicula {
   });
 
   Pelicula.fromJsonMap(Map<String, dynamic> json) {
-    posterPath       = json['poster_path'];
-    adult            = json['adult'];
-    overview         = json['overview'];
-    releaseDate      = json['release_date'];
-    genreIds         = json['genre_ids'].cast<int>();
-    id               = json['id'];
-    originalTitle    = json['original_title'];
+    posterPath = json['poster_path'];
+    adult = json['adult'];
+    overview = json['overview'];
+    releaseDate = json['release_date'];
+    genreIds = json['genre_ids'].cast<int>();
+    id = json['id'];
+    originalTitle = json['original_title'];
     originalLanguage = json['original_language'];
-    title            = json['title'];
-    backdropPath     = json['backdrop_path'];
-    popularity       = json['popularity'] / 1;
-    voteCount        = json['vote_count'];
-    video            = json['video'];
-    voteAverage      = json['vote_average'] / 1;
+    title = json['title'];
+    backdropPath = json['backdrop_path'];
+    popularity = json['popularity'] / 1;
+    voteCount = json['vote_count'];
+    video = json['video'];
+    voteAverage = json['vote_average'] / 1;
   }
 
-  String getImgUrl(){
+  String getImgUrl() {
     if (posterPath == null) {
       return 'https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101032/112815935-stock-vector-no-image-available-icon-flat-vector-illustration.jpg?ver=6';
     }
     return 'https://image.tmdb.org/t/p/w500/$posterPath';
   }
 
+  String getBackdropImg() {
+    print(backdropPath);
+    if (backdropPath == null) {
+      return 'https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101032/112815935-stock-vector-no-image-available-icon-flat-vector-illustration.jpg?ver=6';
+    }
+    return 'https://image.tmdb.org/t/p/w500/$backdropPath';
+  }
 }
 
 class Peliculas {
-  
   List<Pelicula> items = [];
 
   Peliculas();
 
-  Peliculas.fromJsonList(List<dynamic> jsonList){
-    if (jsonList == null) {return;}
+  Peliculas.fromJsonList(List<dynamic> jsonList) {
+    if (jsonList == null) {
+      return;
+    }
     for (var item in jsonList) {
       final Pelicula pelicula = new Pelicula.fromJsonMap(item);
       items.add(pelicula);
     }
   }
-
 }
