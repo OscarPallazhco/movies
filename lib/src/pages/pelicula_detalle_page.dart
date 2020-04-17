@@ -79,6 +79,11 @@ class PeliculaDetallePage extends StatelessWidget {
                   style: Theme.of(context).textTheme.subhead,
                   overflow: TextOverflow.ellipsis,
                 ),
+                Text(
+                  pelicula.releaseDate.substring(0,4),
+                  style: Theme.of(context).textTheme.subhead,
+                  overflow: TextOverflow.ellipsis,
+                ),
                 Row(
                   children: <Widget>[
                     Icon(
@@ -161,6 +166,7 @@ class PeliculaDetallePage extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
         ],
+        crossAxisAlignment: CrossAxisAlignment.start,
       ),
     );
   }
