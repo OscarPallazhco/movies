@@ -48,7 +48,7 @@ class Cast {
 
   Cast.fromJsonList(List<dynamic> jsonList){
     if (jsonList == null) {
-      return
+      return;
     }
     jsonList.forEach((item){
       actores.add(Actor.fromJsonMap(item));
