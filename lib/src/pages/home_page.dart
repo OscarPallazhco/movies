@@ -10,6 +10,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _peliculasProvider.getEnCines();
     _peliculasProvider.getPopulares();
 
     return Scaffold(
@@ -32,7 +33,6 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _swiperTarjetas() {
-    _peliculasProvider.getEnCines();
 
     return FutureBuilder(
       future: _peliculasProvider.getEnCines(),
