@@ -56,7 +56,7 @@ class PeliculaDetallePage extends StatelessWidget {
       child: Row(
         children: <Widget>[
           Hero(
-            tag: pelicula.id,
+            tag: pelicula.uniqueId,
             child: ClipRRect(
               child: Image(
                 image: NetworkImage(pelicula.getImgUrl()),

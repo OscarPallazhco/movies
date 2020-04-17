@@ -7,6 +7,7 @@ class Pelicula {
   String releaseDate;
   List<int> genreIds;
   int id;
+  String uniqueId;
   String originalTitle;
   String originalLanguage;
   String title;

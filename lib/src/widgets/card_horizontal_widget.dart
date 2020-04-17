@@ -29,6 +29,7 @@ class CardHorizontalW extends StatelessWidget {
         pageSnapping: false,
         itemCount: items.length,
         itemBuilder: (BuildContext context, int index) {
+          items[index].uniqueId = '${items[index].id}-pageView';
           return _tarjetaHor(context, items[index]);
         },
       ),
@@ -41,13 +42,13 @@ class CardHorizontalW extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Hero(
-              tag: pelicula.id,
+              tag: pelicula.uniqueId,
               child: ClipRRect(
                 child: FadeInImage(
                   placeholder: AssetImage('assets/imgs/loading.gif'),
                   image: NetworkImage(pelicula.getImgUrl()),
                   fit: BoxFit.cover,
-                  height: 180.0,
+                  height: 160.0,
                 ),
                 borderRadius: BorderRadius.circular(20.0),
               ),
