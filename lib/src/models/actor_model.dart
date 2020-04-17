@@ -29,7 +29,7 @@ class Actor{
     id          = json['id'];
     name        = json['name'];
     order       = json['order'];
-    profilePath = json['profile_ath'];
+    profilePath = json['profile_path'];
   }
 
   String getImgUrl() {
