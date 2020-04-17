@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:movies/src/models/pelicula_model.dart';
+import 'package:movies/src/models/actor_model.dart';
+import 'package:movies/src/providers/peliculas_provider.dart';
 
 class PeliculaDetallePage extends StatelessWidget {
+  final PeliculasProvider _peliculasProvider = new PeliculasProvider();
+
   @override
   Widget build(BuildContext context) {
     final Pelicula pelicula = ModalRoute.of(context).settings.arguments;
@@ -17,7 +21,7 @@ class PeliculaDetallePage extends StatelessWidget {
           ),
           _posterTitulo(context, pelicula),
           _descripcion(pelicula),
-
+          _crearCasting(pelicula),
         ])),
       ],
     ));
@@ -101,6 +105,62 @@ class PeliculaDetallePage extends StatelessWidget {
       child: Text(
         pelicula.overview,
         textAlign: TextAlign.justify,
+      ),
+    );
+  }
+
+  Widget _crearCasting(Pelicula pelicula) {
+    return FutureBuilder(
+      future: _peliculasProvider.getCast(pelicula.id.toString()),
+      builder: (BuildContext context, AsyncSnapshot<List<Actor>> snapshot) {
+        if (snapshot.hasData) {
+          return _crearActoresPageView(snapshot.data);
+        }
+        return Center(child: CircularProgressIndicator());
+      },
+    );
+  }
+
+  Widget _crearActoresPageView(List<Actor> data) {
+    return SizedBox(
+      height: 200.0,
+      child: PageView.builder(
+        pageSnapping: false,
+        itemCount: data.length,
+        controller: PageController(
+          initialPage: 1,
+          viewportFraction: 0.3,
+        ),
+        itemBuilder: (BuildContext context, int i) {
+          return _tarjetaActor(data[i]);
+        },
+      ),
+    );
+  }
+
+  Widget _tarjetaActor(Actor actor) {
+    return Container(
+      margin: EdgeInsets.all(10.0),
+      child: Column(
+        children: <Widget>[
+          ClipRRect(
+            child: FadeInImage(
+              placeholder: AssetImage('assets/imgs/loading.gif'),
+              image: NetworkImage(actor.getImgUrl()),
+              fit: BoxFit.cover,
+              height: 130.0,
+            ),
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          Text(
+            actor.name,
+            overflow: TextOverflow.ellipsis,
+          ),
+          Text(
+            actor.character,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
       ),
     );
   }
