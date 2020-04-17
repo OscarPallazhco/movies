@@ -11,7 +11,7 @@ class PeliculasProvider {
   String _apiKey = "6e665b5d83b3e30bc06a1fa03676617e";
   String _language = "es-ES";
 
-  int _enCinesPage = 0;
+  // int _enCinesPage = 0;
   int _popularesPage = 0;
 
   List<Pelicula> _populares = new List();
@@ -49,11 +49,11 @@ class PeliculasProvider {
 
 
   Future<List<Pelicula>> getEnCines() async {
-    _enCinesPage++;
+    // _enCinesPage++;
     final url = Uri.https(_dominio, '3/movie/now_playing', {
       'api_key': _apiKey,
       'language': _language,
-      'page': _enCinesPage.toString(),
+      // 'page': _enCinesPage.toString(),
     });
 
     final resp = await _procesarRespuestaPelicula(url);
