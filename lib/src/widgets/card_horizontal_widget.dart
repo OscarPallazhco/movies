@@ -40,14 +40,17 @@ class CardHorizontalW extends StatelessWidget {
         margin: EdgeInsets.only(right: 15.0),
         child: Column(
           children: <Widget>[
-            ClipRRect(
-              child: FadeInImage(
-                placeholder: AssetImage('assets/imgs/loading.gif'),
-                image: NetworkImage(pelicula.getImgUrl()),
-                fit: BoxFit.cover,
-                height: 180.0,
+            Hero(
+              tag: pelicula.id,
+              child: ClipRRect(
+                child: FadeInImage(
+                  placeholder: AssetImage('assets/imgs/loading.gif'),
+                  image: NetworkImage(pelicula.getImgUrl()),
+                  fit: BoxFit.cover,
+                  height: 180.0,
+                ),
+                borderRadius: BorderRadius.circular(20.0),
               ),
-              borderRadius: BorderRadius.circular(20.0),
             ),
             SizedBox(
               height: 5.0,

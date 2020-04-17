@@ -55,12 +55,15 @@ class PeliculaDetallePage extends StatelessWidget {
       padding: EdgeInsets.only(left: 15.0, right: 15.0),
       child: Row(
         children: <Widget>[
-          ClipRRect(
-            child: Image(
-              image: NetworkImage(pelicula.getImgUrl()),
-              height: 150.0,
+          Hero(
+            tag: pelicula.id,
+            child: ClipRRect(
+              child: Image(
+                image: NetworkImage(pelicula.getImgUrl()),
+                height: 150.0,
+              ),
+              borderRadius: BorderRadius.circular(20.0),
             ),
-            borderRadius: BorderRadius.circular(20.0),
           ),
           SizedBox(
             width: 20.0,
@@ -80,7 +83,7 @@ class PeliculaDetallePage extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
-                  pelicula.releaseDate.substring(0,4),
+                  pelicula.releaseDate.substring(0, 4),
                   style: Theme.of(context).textTheme.subhead,
                   overflow: TextOverflow.ellipsis,
                 ),
