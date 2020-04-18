@@ -94,4 +94,16 @@ class PeliculasProvider {
     return resp;
   }
 
+    Future<List<Pelicula>> getBusqPelicula(String query) async {
+    final url = Uri.https(_dominio, '3/search/movie', {
+      'api_key' : _apiKey,
+      'language': _language,
+      'query'   : query,
+    });
+
+    final resp = await _procesarRespuestaPelicula(url);
+
+    return resp;
+  }
+
 }
