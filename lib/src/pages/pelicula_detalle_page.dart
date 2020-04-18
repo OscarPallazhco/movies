@@ -83,7 +83,7 @@ class PeliculaDetallePage extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
-                  pelicula.releaseDate.substring(0, 4),
+                  pelicula.releaseDate,
                   style: Theme.of(context).textTheme.subhead,
                   overflow: TextOverflow.ellipsis,
                 ),
