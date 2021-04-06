@@ -1,17 +1,17 @@
 
 
 class Actor{
-  int castId;
-  String character;
-  String creditId;
-  int gender;
-  int id;
-  String name;
-  int order;
-  String profilePath;
+  int?  castId;
+  String? character;
+  String? creditId;
+  int? gender;
+  int? id;
+  String? name;
+  int? order;
+  String? profilePath;
 
   Actor({
-    this.castId,
+    required this.castId,
     this.character,
     this.creditId,
     this.gender,
@@ -44,12 +44,9 @@ class Actor{
 
 class Cast {
 
-  List<Actor> actores = List();
+  List<Actor> actores = [];
 
   Cast.fromJsonList(List<dynamic> jsonList){
-    if (jsonList == null) {
-      return;
-    }
     jsonList.forEach((item){
       actores.add(Actor.fromJsonMap(item));
     });

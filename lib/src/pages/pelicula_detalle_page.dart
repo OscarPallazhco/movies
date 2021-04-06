@@ -8,7 +8,7 @@ class PeliculaDetallePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Pelicula pelicula = ModalRoute.of(context).settings.arguments;
+    final Pelicula pelicula = ModalRoute.of(context)!.settings.arguments as Pelicula;
 
     return Scaffold(
         body: CustomScrollView(
@@ -37,7 +37,7 @@ class PeliculaDetallePage extends StatelessWidget {
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: true,
         title: Text(
-          pelicula.title,
+          pelicula.title!,
           style: TextStyle(color: Colors.white, fontSize: 16.0),
         ),
         background: FadeInImage(
@@ -73,17 +73,17 @@ class PeliculaDetallePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  pelicula.title,
+                  pelicula.title!,
                   style: Theme.of(context).textTheme.headline6,
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
-                  pelicula.originalTitle,
+                  pelicula.originalTitle!,
                   style: Theme.of(context).textTheme.subtitle1,
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
-                  pelicula.releaseDate,
+                  pelicula.releaseDate!,
                   style: Theme.of(context).textTheme.subtitle1,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -111,7 +111,7 @@ class PeliculaDetallePage extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
       child: Text(
-        pelicula.overview,
+        pelicula.overview!,
         textAlign: TextAlign.justify,
       ),
     );
@@ -122,7 +122,7 @@ class PeliculaDetallePage extends StatelessWidget {
       future: _peliculasProvider.getCast(pelicula.id.toString()),
       builder: (BuildContext context, AsyncSnapshot<List<Actor>> snapshot) {
         if (snapshot.hasData) {
-          return _crearActoresPageView(snapshot.data);
+          return _crearActoresPageView(snapshot.data!);
         }
         return Center(child: CircularProgressIndicator());
       },
@@ -161,11 +161,11 @@ class PeliculaDetallePage extends StatelessWidget {
             borderRadius: BorderRadius.circular(20.0),
           ),
           Text(
-            actor.name,
+            actor.name!,
             overflow: TextOverflow.ellipsis,
           ),
           Text(
-            actor.character,
+            actor.character!,
             overflow: TextOverflow.ellipsis,
           ),
         ],

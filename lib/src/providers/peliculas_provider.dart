@@ -14,7 +14,7 @@ class PeliculasProvider {
   // int _enCinesPage = 0;
   int _popularesPage = 0;
 
-  List<Pelicula> _populares = new List();
+  List<Pelicula> _populares = [];
 
   final StreamController _popularesStreamController =
       new StreamController<List<Pelicula>>.broadcast();
@@ -25,10 +25,10 @@ class PeliculasProvider {
       _popularesStreamController.sink.add;
 
   Stream<List<Pelicula>> get popularesStream =>
-      _popularesStreamController.stream;
+      _popularesStreamController.stream as Stream<List<Pelicula>>;
 
   void disposeStreams() {
-    _popularesStreamController?.close();
+    _popularesStreamController.close();
   }
 
   Future<List<Pelicula>> _procesarRespuestaPelicula(Uri url) async {

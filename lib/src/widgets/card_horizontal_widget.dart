@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:movies/src/models/pelicula_model.dart';
 
 class CardHorizontalW extends StatelessWidget {
-  final List<Pelicula> items;
+  final List<Pelicula>? items;
   final Function functionAddItems;
 
-  CardHorizontalW({@required this.items, @required this.functionAddItems});
+  CardHorizontalW({required this.items, required this.functionAddItems});
 
   final PageController _pageController = PageController(
     initialPage: 1,
@@ -27,10 +27,10 @@ class CardHorizontalW extends StatelessWidget {
       child: PageView.builder(
         controller: _pageController,
         pageSnapping: false,
-        itemCount: items.length,
+        itemCount: items!.length,
         itemBuilder: (BuildContext context, int index) {
-          items[index].uniqueId = '${items[index].id}-pageView';
-          return _tarjetaHor(context, items[index]);
+          items![index].uniqueId = '${items![index].id}-pageView';
+          return _tarjetaHor(context, items![index]);
         },
       ),
     );
@@ -57,7 +57,7 @@ class CardHorizontalW extends StatelessWidget {
               height: 5.0,
             ),
             Text(
-              pelicula.title,
+              pelicula.title!,
               overflow: TextOverflow.ellipsis,
               style: Theme.of(context).textTheme.caption,
             ),

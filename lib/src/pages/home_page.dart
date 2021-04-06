@@ -7,6 +7,8 @@ import 'package:movies/src/widgets/card_swiper_widget.dart';
 
 import 'package:movies/src/search/search_delegate.dart';
 
+import '../models/pelicula_model.dart';
+
 class HomePage extends StatelessWidget {
   final PeliculasProvider _peliculasProvider = new PeliculasProvider();
 
@@ -45,7 +47,7 @@ class HomePage extends StatelessWidget {
 
     return FutureBuilder(
       future: _peliculasProvider.getEnCines(),
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<List<Pelicula>> snapshot) {
         if (snapshot.hasData) {
           return CardSwiperW(
             elementos: snapshot.data,

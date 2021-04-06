@@ -44,7 +44,7 @@ class DataSearch extends SearchDelegate {
       future: peliculasProvider.getBusqPelicula(query),
       builder: (BuildContext context, AsyncSnapshot<List<Pelicula>> snapshot) {
         if (snapshot.hasData) {
-          final List<Pelicula> peliculasResult = snapshot.data;
+          final List<Pelicula> peliculasResult = snapshot.data!;
           return ListView(
             children: peliculasResult.map((Pelicula peliculaResult) {
               return ListTile(
@@ -57,10 +57,10 @@ class DataSearch extends SearchDelegate {
                     fit: BoxFit.cover,
                   ),
                 ),
-                title: Text(peliculaResult.title),
+                title: Text(peliculaResult.title!),
                 subtitle: Column(
                   children: <Widget>[
-                    Text(peliculaResult.originalTitle),
+                    Text(peliculaResult.originalTitle!),
                   ],
                   crossAxisAlignment: CrossAxisAlignment.start,
                 ),

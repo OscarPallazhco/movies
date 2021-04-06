@@ -4,9 +4,9 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:movies/src/models/pelicula_model.dart';
 
 class CardSwiperW extends StatelessWidget {
-  final List<Pelicula> elementos;
+  final List<Pelicula>? elementos;
 
-  CardSwiperW({@required this.elementos});
+  CardSwiperW({required this.elementos});
 
   @override
   Widget build(BuildContext context) {
@@ -15,26 +15,26 @@ class CardSwiperW extends StatelessWidget {
     return Container(
       child: Swiper(
         itemBuilder: (BuildContext context, int index) {
-          elementos[index].uniqueId = '${elementos[index].id}-swiper';
+          elementos![index].uniqueId = '${elementos![index].id}-swiper';
           return Hero(
-            tag: elementos[index].uniqueId,
+            tag: elementos![index].uniqueId,
             child: ClipRRect(
               child: GestureDetector(
                 child: FadeInImage(
                   placeholder: AssetImage('assets/imgs/loading.gif'),
-                  image: NetworkImage(elementos[index].getImgUrl()),
+                  image: NetworkImage(elementos![index].getImgUrl()),
                   fit: BoxFit.cover,
                 ),
                 onTap: () {
                   Navigator.of(context).pushNamed('peliculadetalle',
-                      arguments: elementos[index]);
+                      arguments: elementos![index]);
                 },
               ),
               borderRadius: BorderRadius.circular(20.0),
             ),
           );
         },
-        itemCount: elementos.length,
+        itemCount: elementos!.length,
         // pagination: new SwiperPagination(),
         // control: new SwiperControl(),
         layout: SwiperLayout.STACK,
