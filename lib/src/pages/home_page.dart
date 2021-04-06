@@ -69,7 +69,7 @@ class HomePage extends StatelessWidget {
           Container(
             child: Text(
               'Populares',
-              style: Theme.of(context).textTheme.subhead,
+              style: Theme.of(context).textTheme.subtitle1,
             ),
             padding: EdgeInsets.only(left: 15.0),
           ),

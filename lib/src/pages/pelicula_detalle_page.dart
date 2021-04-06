@@ -74,17 +74,17 @@ class PeliculaDetallePage extends StatelessWidget {
               children: <Widget>[
                 Text(
                   pelicula.title,
-                  style: Theme.of(context).textTheme.title,
+                  style: Theme.of(context).textTheme.headline6,
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
                   pelicula.originalTitle,
-                  style: Theme.of(context).textTheme.subhead,
+                  style: Theme.of(context).textTheme.subtitle1,
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
                   pelicula.releaseDate,
-                  style: Theme.of(context).textTheme.subhead,
+                  style: Theme.of(context).textTheme.subtitle1,
                   overflow: TextOverflow.ellipsis,
                 ),
                 Row(
@@ -95,7 +95,7 @@ class PeliculaDetallePage extends StatelessWidget {
                     ),
                     Text(
                       pelicula.voteAverage.toString(),
-                      style: Theme.of(context).textTheme.subhead,
+                      style: Theme.of(context).textTheme.subtitle1,
                     ),
                   ],
                 ),
