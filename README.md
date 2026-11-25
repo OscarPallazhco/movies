@@ -1,21 +1,58 @@
-# movies
+# Películas App
 
-A new Flutter project.
+A Flutter movie browser built on [The Movie Database (TMDB)](https://www.themoviedb.org/) API. It lists movies now in theaters and popular titles, and shows details and cast for each one. The UI is in Spanish (`es-ES`).
 
-## Getting Started
+<p align="center">
+  <img src="docs/screenshots/home.jpg" alt="Home: now playing swiper and popular movies" width="260">
+  &nbsp;
+  <img src="docs/screenshots/detail.jpg" alt="Movie detail with overview and cast" width="260">
+  &nbsp;
+  <img src="docs/screenshots/search.jpg" alt="Movie search" width="260">
+</p>
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
+- **Now playing**: a card swiper of movies currently in theaters.
+- **Popular**: a horizontal list that loads more pages as you scroll (infinite scroll with a `Stream`).
+- **Movie detail**: a collapsing `SliverAppBar` backdrop, poster with a `Hero` animation, original title, release date, rating, overview and cast.
+- **Search**: a `SearchDelegate` that queries TMDB as you type.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Tech
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.  
+- Flutter 2.x with sound null safety (Dart `>=2.12 <3.0`)
+- [`http`](https://pub.dev/packages/http) for the TMDB REST calls
+- [`flutter_card_swipper`](https://pub.dev/packages/flutter_card_swipper) for the now-playing carousel
 
-Notas  
-home_page.dart  
-SafeArea, para respetar los dispositivos que tienen un hueco en la parte superior.  
+## Project structure
 
+```
+lib/
+├── main.dart
+└── src/
+    ├── models/      # Pelicula and Actor models (JSON parsing)
+    ├── pages/       # HomePage, PeliculaDetallePage
+    ├── providers/   # PeliculasProvider: TMDB API calls
+    ├── routes/      # Named routes
+    ├── search/      # DataSearch (SearchDelegate)
+    └── widgets/     # Card swiper and horizontal list
+```
+
+## Getting started
+
+1. Install a Flutter 2.x SDK (the project was last tested with **2.10.5**; Dart 3 / Flutter 3.10+ won't resolve the SDK constraint).
+2. Get a free TMDB API key at <https://www.themoviedb.org/settings/api> and set it in `lib/src/providers/peliculas_provider.dart` (`_apiKey`).
+3. Run it:
+
+   ```bash
+   flutter pub get
+   flutter run            # Android / iOS device or emulator
+   flutter run -d chrome  # or in the browser
+   ```
+
+## Notes
+
+`home_page.dart`: `SafeArea` keeps content clear of devices that have a notch at the top.
+
+---
+
+This product uses the TMDB API but is not endorsed or certified by TMDB.
