@@ -7,7 +7,9 @@
         {
             "name": "Flutter",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            // Reads the key from the TMDB_API_KEY environment variable.
+            "args": ["--dart-define=TMDB_API_KEY=${env:TMDB_API_KEY}"]
         }
     ]
 }

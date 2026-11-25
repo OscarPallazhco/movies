@@ -40,14 +40,27 @@ lib/
 ## Getting started
 
 1. Install a Flutter 2.x SDK (the project was last tested with **2.10.5**; Dart 3 / Flutter 3.10+ won't resolve the SDK constraint).
-2. Get a free TMDB API key at <https://www.themoviedb.org/settings/api> and set it in `lib/src/providers/peliculas_provider.dart` (`_apiKey`).
-3. Run it:
+2. Get a free TMDB API key (v3 auth) at <https://www.themoviedb.org/settings/api>.
+3. Run it, passing the key at build time with `--dart-define`:
 
    ```bash
    flutter pub get
-   flutter run            # Android / iOS device or emulator
-   flutter run -d chrome  # or in the browser
+   flutter run --dart-define=TMDB_API_KEY=your_api_key            # Android / iOS device or emulator
+   flutter run -d chrome --dart-define=TMDB_API_KEY=your_api_key  # or in the browser
    ```
+
+   The same flag works for `flutter build` (e.g. `flutter build apk --dart-define=TMDB_API_KEY=...`). Without it the app opens a screen saying the key is missing ("Falta la API key de TMDB").
+
+   **VS Code:** the included launch configuration reads the key from the `TMDB_API_KEY` environment variable, so export it in the shell you start VS Code from:
+
+   ```bash
+   export TMDB_API_KEY=your_api_key
+   code .
+   ```
+
+### About the API key
+
+Never commit your key. `--dart-define` keeps it out of the source, but it is still compiled into the app binary, where someone determined enough can extract it. That's fine for a personal project using TMDB's free read-only API; a production app should proxy requests through its own backend instead.
 
 ## Notes
 

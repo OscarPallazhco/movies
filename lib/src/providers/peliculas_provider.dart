@@ -8,8 +8,13 @@ import 'package:movies/src/models/actor_model.dart';
 
 class PeliculasProvider {
   String _dominio = "api.themoviedb.org";
-  String _apiKey = "6e665b5d83b3e30bc06a1fa03676617e";
   String _language = "es-ES";
+
+  // Se inyecta en tiempo de compilación:
+  // flutter run --dart-define=TMDB_API_KEY=tu_api_key
+  static const String _apiKey = String.fromEnvironment('TMDB_API_KEY');
+
+  static bool get tieneApiKey => _apiKey.isNotEmpty;
 
   // int _enCinesPage = 0;
   int _popularesPage = 0;
